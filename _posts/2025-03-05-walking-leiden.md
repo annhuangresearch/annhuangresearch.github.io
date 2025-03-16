@@ -5,7 +5,7 @@ description: A walking tour
 featured_image: '/images/leiden-2.jpg'
 ---
 
-![](/images/leiden.jpg)
+![](/images/leiden-3.jpg)
 
 ### Image carousels
 
