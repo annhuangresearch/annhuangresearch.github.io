@@ -29,12 +29,14 @@
 
 .gallery__item {
 	position: relative;
+	width: 100%;  // Adjust width for horizontal images
+	height: auto;  // Maintain aspect ratio for images
 
 	img {
-		width: 100%;
+		width: 100%;  // Full width of the container
+		height: auto; // Auto height to maintain aspect ratio
 	}
 }
-
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Carousel
@@ -46,6 +48,23 @@
 	}
 	
 	.gallery__item {
+		position: relative;
+		width: 60%;  // Adjust this value to control the size (use percentages or px)
+		height: auto;  // Control the height of the items based on your desired size
+		margin: 0 auto;  // Centering the items
+		overflow: hidden; // To avoid images overflowing from the container
+
+		img {
+			width: 100%;   // Ensure images take full width of the container
+			height: auto;  // Maintain aspect ratio
+			
+			// Target vertical images (portrait)
+			&.portrait {
+				height: 100;
+				max-height: 100px;  // Set a maximum height for portrait images
+				object-fit: cover;  // Make sure the image fits within the container without stretching
+				}
+			}
 
 	}
 
@@ -55,6 +74,8 @@
 	}
 
 	.gallery__item__image {
+		width: 100%; // Ensures images fill the container width
+		height: auto; // Keeps the aspect ratio intact
 
 	}
 
