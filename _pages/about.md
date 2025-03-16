@@ -1,5 +1,5 @@
 ---
-title: About Duet
+title: About
 subtitle: Hi I'm Ann and I like to take photos
 description: my photo blog
 featured_image: /images/.jpg
