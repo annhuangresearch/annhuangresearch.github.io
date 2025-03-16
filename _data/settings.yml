@@ -8,7 +8,7 @@ header_settings:
 
 menu_settings:
   menu_items:
-    - title: 'Projects'
+    - title: 'Blog' # Changed name of the homepage section from 'Projects' to 'Blog'
       url: '/'
     #- title: 'Blog'
     #  url: '/blog/'

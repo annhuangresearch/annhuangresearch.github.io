@@ -6,43 +6,29 @@ featured_image: /images/social.jpg
 ---
 
 <section class="intro">
-
-	<div class="wrap">
-
-		<h2>Welcome to my photography journal.</h2>
-		<p>Showcase of photos taken with my Fujifilm.</p>
-
-	</div>
-
+    <div class="wrap">
+        <h2>Welcome to my photography journal.</h2>
+        <p>Showcase of photos taken with my Fujifilm.</p>
+    </div>
 </section>
 
 <section class="portfolio">
-
-	<div class="content-wrap portfolio-wrap">
-
-		{% for project in site.projects reversed %}
-
-		<div class="portfolio-item">
-
-			<a class="portfolio-item__link" href="{{ project.url }}">
-
-				<div class="portfolio-item__image">
-					<img src="{{ project.featured_image  }}" alt="{{ project.title }}">
-				</div>
-
-				<div class="portfolio-item__content">
-					<div class="portfolio-item__info">
-						<h2 class="portfolio-item__title">{{ project.title }}</h2>
-						<p class="portfolio-item__subtitle">{{ project.subtitle }}</p>
-					</div>
-				</div>
-
-			</a>
-
-		</div>
-
-		{% endfor %}
-
-	</div>
-
+    <div class="content-wrap portfolio-wrap">
+        {% for project in site.posts reversed %} <!-- I changed to loop through posts-->
+            <div class="portfolio-item">
+                <a class="portfolio-item__link" href="{{ project.url }}">
+                    <div class="portfolio-item__image">
+                        <img src="{{ project.featured_image }}" alt="{{ project.title }}">
+                    </div>
+                    <div class="portfolio-item__content">
+                        <div class="portfolio-item__info">
+                            <h2 class="portfolio-item__title">{{ project.title }}</h2>
+                            <!-- Add the date here -->
+                            <p class="portfolio-item__date">{{ project.date | date_to_long_string }}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
 </section>

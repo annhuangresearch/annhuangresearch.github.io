@@ -157,4 +157,10 @@ $grid-spacing: {{ site.data.settings.grid_settings.grid_spacing }}px;
 @import "_includes/_portfolio";
 @import "_includes/_blog";
 
+// I added this part because I don't know why the blog posts style (with the title and date) wouldn't transfer to project.html
 
+.portfolio-item__date {
+           color: white; /* Example color */
+           font-size: 1.3em; /* Font size */
+           margin-top: 0.5em; /* Adjust spacing */
+       }

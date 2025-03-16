@@ -30,5 +30,3 @@ A nice little feature: the carousel only advances when it is in view, so your vi
       allowfullscreen="true">
   </iframe>
 </div>
-
----
