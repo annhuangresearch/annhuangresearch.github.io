@@ -29,17 +29,23 @@
 
 .gallery__item {
 	position: relative;
-	width: 100%;  // Adjust width for horizontal images
-	height: auto;  // Maintain aspect ratio for images
 
 	img {
-		width: 100%;  // Full width of the container
-		height: auto; // Auto height to maintain aspect ratio
+		width: 100%;
 	}
 }
 
 
+
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Carousel
+
+.gallery--carousel img {
+	max-width: 100%;  // I added this section so the portrait images are not too huge, adjust as needed
+	max-height: 500px;  // Adjust as needed
+	object-fit: contain;  // Ensures full image is visible
+	margin: auto;  // Centers the image
+	display: block;
+       }
 
 .gallery--carousel {
 
@@ -48,29 +54,6 @@
 	}
 	
 	.gallery__item {
-		position: relative;
-		width: 60%;  // Adjust this value to control the size (use percentages or px)
-		height: auto;  // Control the height of the items based on your desired size
-		margin: 0 auto;  // Centering the items
-		overflow: hidden; // To avoid images overflowing from the container
-
-		img {
-			width: 100%;   // Ensure images take full width of the container
-			height: auto;  // Maintain aspect ratio
-			
-			// Target vertical images (portrait)
-			&.portrait {
-				max-height: 250px; // Default height
-				max-width: 60%; //Adjust width for better proportions
-				@include mq(tabletp) {
-					max-height: 200px; // Reduce height for smaller screens
-				}
-				   
-				@include mq(laptop) {
-					max-height: 300px; // Increase height for larger screens
-				}
-			}
-			}
 
 	}
 
@@ -80,8 +63,6 @@
 	}
 
 	.gallery__item__image {
-		width: 100%; // Ensures images fill the container width
-		height: auto; // Keeps the aspect ratio intact
 
 	}
 
@@ -111,7 +92,6 @@
 		}
 	}
 }
-
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Grid
@@ -204,6 +184,3 @@
 		}
 	}
 }
-
-
-
