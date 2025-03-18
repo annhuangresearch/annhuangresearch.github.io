@@ -60,10 +60,16 @@
 			
 			// Target vertical images (portrait)
 			&.portrait {
-				height: 100;
-				max-height: 100px;  // Set a maximum height for portrait images
-				object-fit: cover;  // Make sure the image fits within the container without stretching
+				max-height: 250px; // Default height
+				max-width: 60%; //Adjust width for better proportions
+				@include mq(tabletp) {
+					max-height: 200px; // Reduce height for smaller screens
 				}
+				   
+				@include mq(laptop) {
+					max-height: 300px; // Increase height for larger screens
+				}
+			}
 			}
 
 	}
