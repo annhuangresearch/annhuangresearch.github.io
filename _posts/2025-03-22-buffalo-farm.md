@@ -56,7 +56,7 @@ Color Chrome Effect: Strong\
 Color Chrome Effect Blue: Weak\
 White Balance: Daylight, +2 Red & -5 Blue\
 ISO: Auto, up to ISO 6400\
-Exposure Compensation: 0 to +2/3 (typically)\
+Exposure Compensation: 0 to +2/3 (typically)
 
 Kodachrome+
 
@@ -74,4 +74,4 @@ Color Chrome Effect Blue: Strong \
 Smooth Skin Effect: On \
 White Balance: Auto (no color shift) \
 ISO: Auto, up to ISO 6400\
-Exposure Compensation: 0 to +2/3 (typically)\
+Exposure Compensation: 0 to +2/3 (typically)
