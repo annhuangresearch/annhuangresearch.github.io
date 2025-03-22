@@ -5,4 +5,4 @@ description: my photo blog
 featured_image: /images/.jpg
 ---
 
-![](/images/selfie.jpg)
+![](/images/about.jpg)

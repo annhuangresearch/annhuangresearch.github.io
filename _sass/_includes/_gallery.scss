@@ -40,7 +40,7 @@
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Carousel
 
 .gallery--carousel img {
-	max-width: 100%;  // I added this section so the portrait images are not too huge, adjust as needed
+	max-width: 200%;  // I added this section so the portrait images are not too huge, adjust as needed
 	max-height: 500px;  // Adjust as needed
 	object-fit: contain;  // Ensures full image is visible
 	margin: auto;  // Centers the image
