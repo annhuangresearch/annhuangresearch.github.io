@@ -1,6 +1,6 @@
 ---
 title: 'Buffalo Farm'
-date: 2025-01-20
+date: 2025-03-22
 description: Saturday trip to buffalo farm in Alphen aan den Rijn
 featured_image: '/images/buffalo-farm-march-25/buffalo-2.jpg'
 ---
@@ -40,3 +40,38 @@ Afterwards we visted the garden center hoping to get some lemon trees. But we go
 
 
 The photos were taken using mostly the Kodachrome64 recipe, sometimes the Kodachrome+ :)
+
+[Kodachrome64](https://fujixweekly.com/2020/05/27/my-fujifilm-x100v-kodachrome-64-film-simulation-recipe/)
+
+Classic Chrome\
+Dynamic Range: DR200\
+Highlight: 0\
+Shadow: 0\
+Color: +2\
+Noise Reduction: -4\
+Sharpening: +1\
+Clarity: +3\
+Grain Effect: Weak, Small\
+Color Chrome Effect: Strong\
+Color Chrome Effect Blue: Weak\
+White Balance: Daylight, +2 Red & -5 Blue\
+ISO: Auto, up to ISO 6400\
+Exposure Compensation: 0 to +2/3 (typically)\
+
+Kodachrome+
+
+Classic Chrome\
+Dynamic Range: DR200\
+Highlight: -2\
+Shadow: -1\
+Color: +2\
+Noise Reduction: -4\
+Sharpening: +1\
+Clarity: +2\
+Grain Effect: Off \
+Color Chrome Effect: Off \
+Color Chrome Effect Blue: Strong \
+Smooth Skin Effect: On \
+White Balance: Auto (no color shift) \
+ISO: Auto, up to ISO 6400\
+Exposure Compensation: 0 to +2/3 (typically)\
