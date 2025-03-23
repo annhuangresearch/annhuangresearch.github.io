@@ -41,6 +41,8 @@ Afterwards we visted the garden center hoping to get some lemon trees. But we go
 
 The photos were taken using mostly the Kodachrome64 recipe, sometimes the Kodachrome+ :)
 
+For a while I was looking for a simulation that would be great for overcast, cloudy days. I found the Kodachrome64 simulation quite suitable for this. I like how it gives off a low-key vibrant, with a bit of a film like look.
+
 [Kodachrome64](https://fujixweekly.com/2020/05/27/my-fujifilm-x100v-kodachrome-64-film-simulation-recipe/)
 
 Classic Chrome\
