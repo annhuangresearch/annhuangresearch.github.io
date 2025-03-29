@@ -2,7 +2,7 @@
 title: 'Bangkok Part 2'
 date: 2025-01-24 00:00:00
 description: Family trip to Bangkok, Thailand
-featured_image: '/images/bangkok-day-2/DSCF3589.JPG'
+featured_image: '/images/bangkok-day-2/DSCF3403.JPG'
 ---
 
 ## Bangkokian museum & Nielson Hayes Library
@@ -62,7 +62,6 @@ This resturant serves the best Thai cuisine!! We had a great time there.
 And what are the chances to meet my colleague John!
 
 <div class="gallery" data-columns="1">
-           <img src="/images/bangkok-day-2/DSCF3750.JPG">
            <img src="/images/bangkok-day-2/DSCF3752.JPG">
            <img src="/images/bangkok-day-2/DSCF3753.JPG">
            <img src="/images/bangkok-day-2/DSCF3754.JPG">
@@ -71,4 +70,5 @@ And what are the chances to meet my colleague John!
            <img src="/images/bangkok-day-2/DSCF3757.JPG">
            <img src="/images/bangkok-day-2/DSCF3758.JPG">
            <img src="/images/bangkok-day-2/DSCF3821.JPG">     
+           <img src="/images/bangkok-day-2/DSCF3750.JPG">
 </div>
