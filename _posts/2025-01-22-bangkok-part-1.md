@@ -24,7 +24,7 @@ On the first night upon arriving at the Grande Centre Point, we ordered dinner a
 
 This city is gilded with gold...
 
-<div class="gallery" data-columns="1">
+<div class="gallery" data-columns="4">
            <img src="/images/bangkok-jan-25/bkk-6.JPG">
            <img src="/images/bangkok-jan-25/bkk-7.JPG">
            <img src="/images/bangkok-jan-25/bkk-8.JPG">
@@ -35,7 +35,7 @@ This city is gilded with gold...
 
 Then we walked around and got on the hop-on-hop-off boat and stopped by China Town to get delicious chicken rice for lunch. We back to the hotel and got some really nice massage right across from our hotel.
 
-<div class="gallery" data-columns="3">
+<div class="gallery" data-columns="1">
            <img src="/images/bangkok-jan-25/bkk-11.JPG">
            <img src="/images/bangkok-jan-25/bkk-12.JPG">
            <img src="/images/bangkok-jan-25/bkk-121.JPG">
@@ -54,7 +54,7 @@ Then we walked around and got on the hop-on-hop-off boat and stopped by China To
 
 In the evening we walked across the river to a local restaurant with cozy vibe and great food.
 
-<div class="gallery" data-columns="1">
+<div class="gallery" data-columns="2">
            <img src="/images/bangkok-jan-25/bkk-212.JPG">
            <img src="/images/bangkok-jan-25/bkk-21.JPG">
 </div>
@@ -80,7 +80,6 @@ After dinner we walked to IconSiam, enjoying the city night view and cute cats, 
 <div class="gallery" data-columns="1">
            <img src="/images/bangkok-jan-25/bkk-33.JPG">
            <img src="/images/bangkok-jan-25/bkk-34.JPG">
-           <img src="/images/bangkok-jan-25/bkk-35.JPG">
            <img src="/images/bangkok-jan-25/bkk-36.JPG">
            <img src="/images/bangkok-jan-25/bkk-37.JPG">
            <img src="/images/bangkok-jan-25/bkk-38.JPG">

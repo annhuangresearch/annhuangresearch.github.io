@@ -7,8 +7,7 @@ featured_image: '/images/bangkok-day-2/DSCF3589.JPG'
 
 ## Bangkokian museum & Nielson Hayes Library
 
-<div class="gallery" data-columns="2">
-           <img src="/images/bangkok-day-2/DSCF3385.JPG">
+<div class="gallery" data-columns="3">
            <img src="/images/bangkok-day-2/DSCF3390.JPG">
            <img src="/images/bangkok-day-2/DSCF3397.JPG">
            <img src="/images/bangkok-day-2/DSCF3399.JPG">
