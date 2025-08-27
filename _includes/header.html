@@ -1,32 +1,26 @@
-<header class="header">
+{% if page.title == "Home"
+   or page.title == "Blog"
+   or page.title == "Projects"
+   or page.title == "Tags"
+%}{% assign showHeader = true %}{% endif %}
 
-	<div class="wrap">
+{% if showHeader == true %}
+    <header class="header-home {% if site.animation %}animated{% endif %}">
+        {% if site.about %}
+            <a class="link" href="{{ site.url }}/about">
+                <img class="selfie" alt="{{ site.title }}" src="{% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %}" />
+            </a>
+        {% else %}
+            <span class="link">
+                <img class="selfie" alt="{{ site.title }}" src="{% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %}" />
+            </span>
+        {% endif %}
 
-		{% if site.data.settings.header_settings.logo_image %}
-		<a href="/" class="header__logo">
-			<img src="{{ site.data.settings.header_settings.logo_image }}" class="header__logo__img">
-		</a>
-		{% else %}
-		<a href="/" class="header__title">
-			{{ site.data.settings.basic_settings.site_title }}
-		</a>
-		{% endif %}
+        <h1 class="title">{{ site.title }}</h1>
+        <h2 class="description">{{ site.bio }}</h2>
 
-		<div class="menu">
-			<div class="menu__toggle js-menu-toggle">
-				<div class="menu__toggle__icon"><span></span></div>
-			</div>
-			<div class="menu__wrap">
-				<ul class="menu__list">
-					{% for item in site.data.settings.menu_settings.menu_items %}
-					<li class="menu__list__item">
-						<a href="{{ item.url }}" class="menu__list__item__link">{{ item.title }}</a>
-					</li>
-					{% endfor %}
-				</ul>
-			</div>
-		</div>
+        {% include social-links.html %}
+    </header>
+{% endif %}
 
-	</div>
-
-</header>
+{% include nav.html %}

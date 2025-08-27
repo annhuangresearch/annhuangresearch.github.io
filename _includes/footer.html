@@ -1,26 +1,13 @@
-<footer class="footer">
+<footer class="footer-main">
+    {{ site.title }} © {{ site.time | date: '%Y' }}
 
-	<div class="wrap">
+    <a class="link" href="{{ site.url }}/feed.xml" target="_blank" alt="anchor link to rss feed" aria-label="anchor link to rss feed">
+        <i class="fa-solid fa-rss"></i>
+    </a>
 
-		{% if site.data.settings.footer_settings.logo_image %}
-		<a href="/" class="footer__logo">
-			<img src="{{ site.data.settings.footer_settings.logo_image }}" class="footer__logo__img">
-		</a>
-		{% else %}
-		<a href="/" class="footer__title">
-			{{ site.data.settings.basic_settings.site_title }}
-		</a>
-		{% endif %}
-
-		<p class="footer__text">{{ site.data.settings.footer_settings.footer_tagline }}</p>
-
-		<div class="footer__copyright">
-			<span>© {{ 'now' | date: "%Y" }} {{ site.data.settings.basic_settings.site_title }}</span>
-			<a href="https://jekyllthemes.io" target="_blank">Jekyll Themes</a>
-		</div>
-
-		{% include socials.html %}
-
-	</div>
-
+    <p class="extra">
+        <a class="link" href="https://github.com/sergiokopplin/indigo">Indigo theme</a>
+        by
+        <a class="link" href="https://github.com/sergiokopplin/indigo">Kopplin</a>
+    </p>
 </footer>
