@@ -36,4 +36,10 @@
             <i class="fa-regular fa-envelope"></i>
         </a>
     {% endif %}
+
+    {% if site.bluesky %}
+        <a class="link" data-title="bsky.app/profile/{{ site.bluesky }}" href="https://bsky.app/profile/{{ site.bluesky }}" target="_blank" rel="noopener" alt="anchor link for social media bluesky" aria-label="anchor link for social media bluesky">
+            <i class="fa-brands fa-bluesky"></i>
+        </a>
+    {% endif %}
 </div>
