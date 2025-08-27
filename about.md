@@ -22,7 +22,7 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
 <ul class="skill-list">
 	<li>Experimental Psychology</li>
-	<li>Cognitive Neuroscience</li>
+	<li>Statistical Modeling</li>
 	<li>EEG</li>
 	<li>R</li>
 	<li>Python</li>
