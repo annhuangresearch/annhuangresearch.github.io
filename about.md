@@ -22,10 +22,11 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
 <ul class="skill-list">
 	<li>Experimental Psychology</li>
-	<li>Statistical modeling</li>
+	<li>Statistical Modeling</li>
 	<li>Bayesian Statistics</li>
 	<li>R</li>
 	<li>Python</li>
+	<li>AR/VR</li>
 	<li>SQL</li>
 </ul>
 
