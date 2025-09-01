@@ -1,5 +1,5 @@
 ---
-title: "Understanding generalized linear models through data simulation (under construction)"
+title: "Understanding generalized linear models through data simulation"
 layout: post
 date: 2022-12-13
 tag:
