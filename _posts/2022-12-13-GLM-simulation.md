@@ -180,7 +180,7 @@ table(participant_n_1) # check counts, looks ok
 
 The ```table(participant_n_1)``` output shows the counts of each category in our simulated dataset:
 
-<img src="/assets/images/sim_step3.jpg" alt="alternate text" width="210" height="100">
+<img src="/assets/images/sim_step3.jpg" alt="alternate text" width="110" height="200">
 
 This shows that the task stimulus direction is balanced, rouhgly half is left and half is right. Similarly for the previous trial actor, about half performed by the participant oneself and half performed by the partner.
 
