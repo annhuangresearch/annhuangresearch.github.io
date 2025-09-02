@@ -81,15 +81,20 @@ In this post, I will walk through an R script that simulates a perceptual task. 
 
 ## Step 1. Specify the model
 
-- First, we specify the regression model:
+- **First, we specify the regression model**:
+
   $$
   Pr(Y=1) = \text{logit}^{-1}(\beta_{0} + \beta_{1}X)
   $$
-- More specifically, we can write out the variables that predict the observed choice response e.g., the stimulus direction, the previous stimulus direction, etc:
-  $$
-  Pr(\text{Response} = 1) = \text{logit}^{-1}\big(\beta_{0} + \beta_{1}\cdot\text{Direction} + \beta_{2}\cdot\text{PrevDirection}\big)
-  $$
+
+- More specifically, we can write out the variables that predict the observed choice response e.g., the stimulus direction, the previous stimulus direction, so on:
+
+  $$ Pr(\text{Response} = 1) = \text{logit}^{-1}\Big(\beta_{0} + \beta_{1}\cdot\text{stimulus direction}$$
+
+  $$+ \beta_{2}\cdot\text{previous stimulus direction}\Big)$$
+
 - For logistic regression modeling estimation, the dependent variable is the participants’ response choices, which were bounded between 0 and 1, reflecting the probability of selecting rightward, rising from 0 (left) to 1 (right):
+
   $$
   \text{Response} =
   \begin{cases}
@@ -97,12 +102,13 @@ In this post, I will walk through an R script that simulates a perceptual task. 
    0 & \text{left}
   \end{cases}
   $$
+
 - Here, I choose [effect coding](https://stats.oarc.ucla.edu/other/mult-pkg/faq/general/faqwhat-is-effect-coding/#:~:text=Effect%20coding%20provides%20one%20way%20of%20using%20categorical,all%20of%20the%20necessary%20information%20on%20group%20membership) for easier interpretation of the coefficient estimates as they directly indicate the difference in the mean outcome variable between the two levels of the predictor variables. For example, right is coded as +1, left is coded as -1.
 
 ## Step 2. Prepare the data script
 
 - Load pacakges and set seed for reproducibility
-- The objective of doing a data simulation exercise is to understand how different choices in the simulation design and model specification can affect the inferences that are drawn from the data. The intention is not to perfectly match the data, but to understand how different choices in the design can affect the results.
+- The objective of doing a data simulation exercise is to **understand how different simulation design choices and model specifications affect the inferences that are drawn from the data.** The intention is not to see a perfect match in the data, but to understand how different choices in the design can affect the results.
 
 ```{r}
 # Remove everything
@@ -140,23 +146,23 @@ b4 <- 0.8  # previous trial performer's identity, "participant_n_1"
 
 ## Step 3. Create the dataframe
 
-In this step, we define the elements that make up the experiment. For example, the experiment includes:
+In this step, we can think about the core elements that make up the experiment. For example, a simple working experiment includes:
 
 - **Blocks** and **trials** that structure the experiment. In the actual experiment, there are 10 blocks with 100 trials each. Of course, you can simulate even more trials to see how it influences the model estimation
-- The **stimulus** direction that is the task itself which elicit responses from participants,$$stimulus_{n}$$
+- The **stimulus** direction that is the task itself which elicit responses from participants, $$stimulus_{n}$$
 - The **previous stimulus** direction. This might be interesting to know how previous stimulus influence the subsequent decision making, $$stimulus_{n-1}$$
-- The participant's actual **choice responses** to each current trial stimulus (coded as 0 = left, 1 = right), $$response_{n}$$
-- The participant's **choice response on the previous trial**, $$response_{n-1}$$
-- The previous trial performer or actor, because I am interested in whether who gave the response previously influence the decision, $$participant_{n-1}$$
-- The **room number** that each dyadic participant was sitting in
+- The participant's actual **choice responses** to each trial stimulus (coded as 0 = left, 1 = right), $$response_{n}$$
+- The participant's **choice response on the previous trial**. This is important since I want to investigate how might previous choice bias the decision, $$response_{n-1}$$
+- The **previous trial performer or actor**, because it is interesting to know whether who gave the response previously influence the decision, $$participant_{n-1}$$
+- The **chamber or room number** that each dyadic participant was sitting in
 
-The goal here is to simulate variables that represent each of these components, so that the resulting dataframe mirrors the structure of the real experiment.
+The goal here is to simulate variables that represent each of these components for the experiment, so that the resulting dataframe mirrors the structure of the real experiment.
 
 ```{r}
-# create block, trial, room to match the real experiment data
+# create block, trial, chamber room to match the real experiment data
 block <- rep(1:10, size = n, each = 100)
 trial <- rep(1:100, size = n, times = 10)
-room <- rep(c("room_1", "room_2"), times = n/2, each = 1)
+chamber <- rep(c("chamber_", "chamber_2"), times = n/2, each = 1)
 
 # create direction of the trial stimulus, called "stimulus_n"
 stimulus_n <- sample(c(-1,1),replace = TRUE, size = n, prob = c(0.5, 0.5))
@@ -173,7 +179,8 @@ table(participant_n_1) # check counts, looks ok
 ```
 
 The ```table(participant_n_1)``` output shows the counts of each category in our simulated dataset:
-<img src="/assets/images/sim_step3.jpg" alt="alternate text" width="200" height="200">
+
+<img src="/assets/images/sim_step3.jpg" alt="alternate text" width="210" height="100">
 
 This shows that the task stimulus direction is balanced, rouhgly half is left and half is right. Similarly for the previous trial actor, about half performed by the participant oneself and half performed by the partner.
 
@@ -190,7 +197,7 @@ table(response) # check counts
 ```
 
 The ```table(response)``` output shows the counts of each category of response:
-<img src="/assets/images/sim_step4.jpg" alt="alternate text" width="200" height="250">
+<img src="/assets/images/sim_step4.jpg" alt="alternate text" width="200" height="150">
 
 This demonstrates that the responses are roughly balanced, as expected for a random initialization.
 
@@ -209,7 +216,7 @@ head(sim_df)
 ```
 
 The ```head(sim_df)``` gives a preview of the first few rows of our simulated dataset:
-<img src="/assets/images/sim_step4-1.jpg" alt="alternate text" width="200" height="150">
+<img src="/assets/images/sim_step4-1.jpg" alt="alternate text" width="530" height="150">
 
 Each row represents a trial, with columns for block, trial number, chamber, stimulus direction, previous stimulus, participant identity, previous response, and the current response.
 
@@ -227,7 +234,7 @@ xbs_all <- b0 + b1*stimulus_n + b3*sim_df["response_n_1"] + b4*participant_n_1
 outcome <- inv.logit(xbs_all) # predicted probability of responding "right"
 head(outcome)
 ```
-<img src="/assets/images/sim_step5.jpg" alt="alternate text" width="200" height="150">
+<img src="/assets/images/sim_step5.jpg" alt="alternate text" width="50" height="300">
 
 ## Step 6 Sample from the outcome
 
@@ -257,7 +264,7 @@ sum(is.na(response))
 table(response, useNA = "always")
 ```
 The output from the series of checking
-<img src="/assets/images/sim_step5.jpg" alt="alternate text" width="200" height="150">
+<img src="/assets/images/sim_step6.jpg" alt="alternate text" width="200" height="150">
 
 ## Step 7 Update the dataset
 
@@ -288,13 +295,21 @@ Now we can type ```glm()```. This step is what we do when we analyze the data. H
 ```{r}
 #response_n_1 <- sim_df$response_n_1
 
+# the model with previous response
+
 mod <- glm(response ~ stimulus_n + response_n_1, 
                 data = sim_df, family = "binomial")
 summary(mod)
-#r2_tjur(mod)
+r2_tjur(mod)
+
+# the model with previous response and previous actor
+mod_2 <- glm(response ~ stimulus_n + response_n_1 + participant_n_1, 
+                data = sim_df, family = "binomial")
+summary(mod_2)
+r2_tjur(mod_2)
 ```
 
-The output from the model fitting shows
+The output from the first model fitting shows
 <img src="/assets/images/sim_step8.jpg" alt="alternate text" width="200" height="150">
 
 Recall the betas we set in the beginning:
@@ -306,8 +321,14 @@ b2 <- 0.09 # previous direction of the stimulus
 b3 <- 0.8  # previous response, "response_n_1"
 b4 <- 0.8  # previous trial performer's identity, "participant_n_1"
 ```
-The estimated coefficient for ```stimulus_n``` is ~0.997. Compared to the 1.3, it's slightly smaller but it captures the strong positive influence of the stimulus on responses.
+- The estimated coefficient for ```stimulus_n``` is ~0.997. Compared to the 1.3, it's slightly smaller but it captures the strong positive influence of the stimulus on responses.
+- The estimated coefficient for ```response_n_1``` is ~0.042, which is a bit off compared to 0.8. This discrepancy occurs because we only included two predictors in the model. This could shrink the apparent effect of ```response_n_1```.
+- The intercept is near zero, consistent with what we set in the beginning
 
-The estimated coefficient for ```response_n_1``` is ~0.042, which is a bit off compared to 0.8. This discrepancy sometimes occur because we only included two predictors in the model so the effects of the other predictors (participant_n_1 and stimulus_n-1) are not controlled for. This could shrink the apparent effect of ```response_n_1```.
+The output from the second model fitting shows
+<img src="/assets/images/sim_step8-1.jpg" alt="alternate text" width="200" height="150">
 
-The intercept is near zero, consistent with b0 = 0.
+- The estimated coefficient for ```stimulus_n``` is now ~1.10, slightly closer to the true value of 1.3 compared to the previous model.
+- The estimated coefficient for ```response_n_1``` remains small ~0.041, still below its true effect of 0.8.
+- The estimated coefficient for ```participant_n_1``` is ~0.70, closer to the true value of 0.8. Including this predictor allows the model to account for variability between participants, which was previously absorbed by other coefficients.
+- Tjur’s R² increased from ~0.21 to ~0.28, indicating the model now explains more of the variability in responses
