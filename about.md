@@ -11,13 +11,12 @@ Using methods from experimental psychology, statistical modeling, augmented and 
 <h2>Skills</h2>
 
 <ul class="skill-list">
-	<li>Experimental Psychology</li>
-	<li>Statistical Modeling</li>
-	<li>Bayesian Statistics</li>
+	<li>Experimental psychology</li>
+	<li>Statistical modeling</li>
+	<li>Bayesian statistics</li>
 	<li>R</li>
 	<li>Python</li>
 	<li>AR/VR</li>
-	<li>SQL</li>
 </ul>
 
 <h2>Publications</h2>

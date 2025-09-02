@@ -234,7 +234,7 @@ xbs_all <- b0 + b1*stimulus_n + b3*sim_df["response_n_1"] + b4*participant_n_1
 outcome <- inv.logit(xbs_all) # predicted probability of responding "right"
 head(outcome)
 ```
-<img src="/assets/images/sim_step5.jpg" alt="alternate text" width="50" height="300">
+<img src="/assets/images/sim_step5.jpg" alt="alternate text" width="100" height="300">
 
 ## Step 6 Sample from the outcome
 
@@ -263,8 +263,9 @@ any(is.na(response))
 sum(is.na(response))
 table(response, useNA = "always")
 ```
-The output from the series of checking
-<img src="/assets/images/sim_step6.jpg" alt="alternate text" width="200" height="150">
+The output from the series of checking:
+
+<img src="/assets/images/sim_step6.jpg" alt="alternate text" width="400" height="250">
 
 ## Step 7 Update the dataset
 
@@ -309,8 +310,8 @@ summary(mod_2)
 r2_tjur(mod_2)
 ```
 
-The output from the first model fitting shows
-<img src="/assets/images/sim_step8.jpg" alt="alternate text" width="200" height="150">
+The output from the first model fitting shows:
+<img src="/assets/images/sim_step8.jpg" alt="alternate text" width="600" height="400">
 
 Recall the betas we set in the beginning:
 
@@ -325,8 +326,9 @@ b4 <- 0.8  # previous trial performer's identity, "participant_n_1"
 - The estimated coefficient for ```response_n_1``` is ~0.042, which is a bit off compared to 0.8. This discrepancy occurs because we only included two predictors in the model. This could shrink the apparent effect of ```response_n_1```.
 - The intercept is near zero, consistent with what we set in the beginning
 
-The output from the second model fitting shows
-<img src="/assets/images/sim_step8-1.jpg" alt="alternate text" width="200" height="150">
+The output from the second model fitting shows:
+
+<img src="/assets/images/sim_step8-1.jpg" alt="alternate text" width="600" height="500">
 
 - The estimated coefficient for ```stimulus_n``` is now ~1.10, slightly closer to the true value of 1.3 compared to the previous model.
 - The estimated coefficient for ```response_n_1``` remains small ~0.041, still below its true effect of 0.8.
