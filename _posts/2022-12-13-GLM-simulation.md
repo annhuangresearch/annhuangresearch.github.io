@@ -11,55 +11,85 @@ author: annhuang
 description: Simulating data to understand the data generation process
 ---
 
-## Outline
+# Outline
 - [Summary](#summary)
 - [Background](#background)
-- [Preparation](#preparation)
-- [Creating a dataframe](#creating-a-data-frame)
-- [Compute the logits](#compute-the-logits)
-- [Fit the GLM](#fit-the-glm)
+- [R Script](#r-script)
 
-## Summary
+# Summary
 
-In this tutorial, I present a guide on how to simulate synthetic or fake data from a simple visual perceptual experiment, which is commonly used in psychology and neuroscience studies. The goal is to illustrate how the practice of synthetic data simulation can be useful for understanding the data generation process. This helps us better understand how statstical models work and how to interpret or explain the regression output.
+In this tutorial, I present a guide on how to simulate synthetic or fake data for a simple visual perceptual experiment, which is commonly used in psychology and neuroscience studies. The goal is to illustrate how the practice of synthetic data simulation can be useful for understanding the data generation process. Simulating data can help us better understand how statistical models work, and how to interpret the regression output.
 
 ---
 
-## Background
+# Background
 
-Many questions in psychology and neuroscience are about how people respond to sensory information. For example, did the badminton shuttle land inside, outside or on the court line? Is that a cat or a tiger hiding behind the bushes? Is that my car key in the container of keys?
+## Perception in everyday life
 
-These types of questions deal with **detection of signals**, which also uncovers the process of how we convert everyday sensory inputs into a behavioral response like making a decision.
+Many questions in psychology and neuroscience are about how people respond to sensory information. For example, which is my car key in the container of keys? Did the badminton shuttle land inside, outside or on the court line (<a href="#fig1">Figure 1</a>)?
 
-To answer these questions, researchers often use "psychophysics" or "perceptual" experiments to **model the relationship between physical stimuli and the subjective sensation**. Typically in these perceptual experiments, a human observer is presented with a simple visual stimulus e.g., a cloud of dots moving either predominately to the right or to the left (See Figure 1). The observer is asked to discriminate the direction of the motion by making a speeded choice response between the two alternatives, left or right. For some, the task is easy yet for others, it is not easy. Thus, each person's sensitivity to the same sensory stimulus varies.
+<figure id="fig1">
+  <img src="/assets/images/badminton_1.jpg" alt="Badminton" width="400">
+  <figcaption class="caption">
+    Figure 1. An example of the official Instant Review System by the Hawk-Eye technology in badminton 
+    <a href="https://www.victorsport.com/badmintonaz/6958" target="_blank">[source]</a>
+  </figcaption>
+</figure>
 
-An important side note: since I am interested in the social aspect, I conducted a **dyadic perceptual experiment** in which two people took turn to respond to the stimulus. In particular, I am interested in how the previous choice response (or choice history) influence the decision-making i.e., how does my previous response predict what I choose next when I know that my partner is observing? Specifically, on each trial, one member of a dyad is selected to respond to the stimulus. Overall, there are 10 blocks, each block has 100 trials and the entire experiment took around 3 and 1/2 hours. This dual-participant setup allowed me to better understand how we make decisions knowing that we are being observed by other people, just like in real life.
+These types of questions deal with **detection of signals**, which also reveals the process of how we convert sensory inputs into a behavioral response like making a decision.
 
-Here, we perform statistical modeling to infer the relationship between what people chose and the variables that are believed to have influenced what people chose. Note that a statistical model is simply using math to represent the relationship between two variables. Because people only made binary choices (left or right) in the experiment, this simplifies the solution to the problem a bit. Specifically, we can use a **generalized linear model (GLM)** with a logit link function to explain the likelihood that people choose left or right based on specific sets of predictors, such as the stimulus direction, what the previous choice was or what the previous stimulus direction was.
+To answer these questions, researchers often use psychophysics, or perceptual experiments to **model the relationship between physical stimuli and the subjective sensation**. Typically in these perceptual experiments, an observer is presented with a visual stimulus e.g., cloud of dots moving either predominately to the right or to the left (<a href="#fig2">Figure 2</a>). The observer is asked to discriminate the direction of the motion by making a speeded choice response between the two alternatives, thus the name of the experiment is referred to as the two-alternative forced choice (2AFC) task. For some, the task is easy yet for others, it is not so easy. Thus, each person's sensitivity to the same sensory stimulus varies.
+
+<figure id="fig2">
+  <img src="/assets/images/2afc.jpg" alt="Task" width="500">
+  <figcaption class="caption">
+    Figure 2. An example depiction of one trial in the standard two-alternative forced choice (2AFC) task. The task procedure as described here includes four steps in time, from left to right. In a single trial, an audio tone can cue the participant to respond to the dots that motion dominantly to the left or right. The participant is to discriminate the direction and make a speeded choice. When the participant responds, the the fixation cross color changed from green to blue or yellow depending on the choice response.
+  </figcaption>
+</figure>
+
+## Social perception
+
+Because I was interested in the social aspect of decision-making (see paper: [Huang et al., 2025](https://www.nature.com/articles/s41598-025-96182-5)), I turned this into a **dyadic perceptual decision-making task** (<a href="#fig3">Figure 3</a>) in which two people took turn to respond to the stimulus. In particular, I wanted to find out how the previous choice response influence or bias our decision-making. My objective was to determine whether perceptual decision-making is more of an individualistic (independent of the co-actor’s action) or collective (contingent on the co-actor’s action) process despite the co-actor’s actions being irrelevant to the present decision. This dual-participant setup allowed me to better understand how we make decisions knowing that we are being observed by other people, just like in real life.
+
+<figure id="fig3">
+  <img src="/assets/images/dyadic-task.jpg" alt="Task" width="500">
+  <figcaption class="caption">
+    Figure 3. A depiction of the dyadic perceptual decision-making task.
+  </figcaption>
+</figure>
+
+## Generalized linear models
+
+In this case, typically we would want to fit a statistical model to the data to infer the relationship between what people chose and the variables that are believed to have influenced what people chose. **A statistical model is simply using math to represent the relationship between two variables.** Because people only made binary choices (left or right) in the experiment, this simplifies the solution to the problem a bit. Specifically, we can use the **generalized linear model (GLM)**([See tutorial](https://library.virginia.edu/data/articles/simulating-a-logistic-regression-model)) with a logit link function to explain the likelihood that people choose left or right based on specific sets of predictors, such as the stimulus direction, what the previous choice was or what the previous stimulus direction was.
 
 To fit the statistical model to the observed data, we can use the R programming language since it provides an extensive library for a wide-ranging statistical analyses. Fitting a statistical model is easy and straightforward because it only requires typing one or maximum two lines of code.
 
+## Why simulate?
+
 However, as a student starting out to learn how these statistical models work, sometimes we do not always understand exactly what the model is doing or how to really interpret the results. For example, what does a regression coefficient of 1.2 actually mean? How does effect coding versus dummy coding for the variables (−1 vs. +1 instead of 0 vs. 1) change the interpretation?
 
-The analogy is like moving into a new apartment and using the appliances: you know how to turn on the induction stove in the kitchen; yet one day, suppose when the stove does not get turned on, why is the stove behaving this way? Which of the electrical wiring is at fault? In case like this, we may appreciate a DIY kitchen installation experience because through building the kitchen, we understand exactly the mechanism of how the stove is turn on or off.
+The analogy is like lego building. Imagine you’re given Lego car model. However, when you push it, it doesn’t roll or move. You suspect that it could be the pieces that are too tight or the axles misaligned. Instead of guessing, you can build a tiny test prototype, perhaps just one wheel and axle at a time. This way you see exactly how the pieces fit together that make the wheel roll smoothly. Data simulation works the similar way. By replicating a small version of the actual dataset and fitting the statistical model to it, you can better understand how the model works e.g., how each piece (variable) affects the outcome, and troubleshoot before fitting the model to your real dataset.
 
-This is how the practice of synthetic data simulation is helpful. By generating synthetic datasets where we set the **"true" parameters**, we can see how GLM estimation works in practice, check whether we can recover the parameters, and build intuition about model behavior.
+**Specifically, by generating synthetic datasets where we set the "true" parameters, we can see how GLM estimation works in practice, check whether we can recover the parameters, and build intuition about model behavior.**
 
 In this post, I will walk through an R script that simulates a perceptual task. We will first generate some synthetic data, then fit a GLM, and assess the output of the model. Specifically, we will compare the model's estimation to the values we set at the start.
 
-## Goal
+# R script
 
 - **Goal**: To simulate a synthetic data frame that replicates a simple perceptual decision-making experiment, define the coefficients values, and run the `glm()` to recover the logistic regression coefficients. 
 - **Purpose**: To understand the data generation process, the coefficients in relation to the model, and explain the regression output. 
-- **Specification of the logistic regression model**:  
+
+## Step 1. Specify the model
+
+- First, we specify the regression model:
   $$
   Pr(Y=1) = \text{logit}^{-1}(\beta_{0} + \beta_{1}X)
   $$
-- More specifically:
+- More specifically, we can write out the variables that predict the observed choice response e.g., the stimulus direction, the previous stimulus direction, etc:
   $$
   Pr(\text{Response} = 1) = \text{logit}^{-1}\big(\beta_{0} + \beta_{1}\cdot\text{Direction} + \beta_{2}\cdot\text{PrevDirection}\big)
   $$
-- Coding of the observed choice response:  
+- For logistic regression modeling estimation, the dependent variable is the participants’ response choices, which were bounded between 0 and 1, reflecting the probability of selecting rightward, rising from 0 (left) to 1 (right):
   $$
   \text{Response} =
   \begin{cases}
@@ -67,12 +97,11 @@ In this post, I will walk through an R script that simulates a perceptual task. 
    0 & \text{left}
   \end{cases}
   $$
-- Everything else like the actor information, stimulus direction are effect coded (1 and -1)
+- Here, I choose [effect coding](https://stats.oarc.ucla.edu/other/mult-pkg/faq/general/faqwhat-is-effect-coding/#:~:text=Effect%20coding%20provides%20one%20way%20of%20using%20categorical,all%20of%20the%20necessary%20information%20on%20group%20membership) for easier interpretation of the coefficient estimates as they directly indicate the difference in the mean outcome variable between the two levels of the predictor variables. For example, right is coded as +1, left is coded as -1.
 
-## Preparation
+## Step 2. Prepare the data script
 
 - Load pacakges and set seed for reproducibility
-
 - The objective of doing a data simulation exercise is to understand how different choices in the simulation design and model specification can affect the inferences that are drawn from the data. The intention is not to perfectly match the data, but to understand how different choices in the design can affect the results.
 
 ```{r}
@@ -90,7 +119,7 @@ set.seed(999)
 n = 10000
 ```
 
-Now according to the model specification, we need the inverse logit, which is: $$\frac{e^p}{1 + e^p}$$
+Now, according to the model specification, we need the inverse logit, which is: $$\frac{e^p}{1 + e^p}$$
 This function takes the systematic component of the model and translates it into probabilities varying between 0 and 1. Then we need to define the ground truth values for the model parameters.
 
 ```{r}
@@ -107,11 +136,21 @@ b1 <- 1.3  # stimulus direction, or "stimulus_n"
 b2 <- 0.09 # previous direction of the stimulus
 b3 <- 0.8  # previous response, "response_n_1"
 b4 <- 0.8  # previous trial performer's identity, "participant_n_1"
-
 ```
-## Creating a data frame
 
-In this step, we think about what are the elements that make up the experiment? For instance, the experiment has a stimulus and the stimulus elicits the observer's responses. The experiment also consists certain number of blocks, and in each block there are certain number of trials. There are the participants who sit in different rooms, etc. The point here is that we should think about the design of the experiment, and simulate variables that code for each of these information.
+## Step 3. Create the dataframe
+
+In this step, we define the elements that make up the experiment. For example, the experiment includes:
+
+- **Blocks** and **trials** that structure the experiment. In the actual experiment, there are 10 blocks with 100 trials each. Of course, you can simulate even more trials to see how it influences the model estimation
+- The **stimulus** direction that is the task itself which elicit responses from participants,$$stimulus_{n}$$
+- The **previous stimulus** direction. This might be interesting to know how previous stimulus influence the subsequent decision making, $$stimulus_{n-1}$$
+- The participant's actual **choice responses** to each current trial stimulus (coded as 0 = left, 1 = right), $$response_{n}$$
+- The participant's **choice response on the previous trial**, $$response_{n-1}$$
+- The previous trial performer or actor, because I am interested in whether who gave the response previously influence the decision, $$participant_{n-1}$$
+- The **room number** that each dyadic participant was sitting in
+
+The goal here is to simulate variables that represent each of these components, so that the resulting dataframe mirrors the structure of the real experiment.
 
 ```{r}
 # create block, trial, room to match the real experiment data
@@ -124,89 +163,109 @@ stimulus_n <- sample(c(-1,1),replace = TRUE, size = n, prob = c(0.5, 0.5))
 table(stimulus_n) # check; -1: 496, 1: 504. looks ok
 
 # create previous direction of the stimulus, "stimulus_n_1"
-
 stimulus_n_1 <- sample(c(-1,1),replace = TRUE,
                              size = n, prob = c(0.5, 0.5))
 
-# create response variable, i.e. the actual observed left or right response
-# (coded in 0s and 1s, respectively) during the task
-
-# NOTE: this is generated independently from the "outcome",  we will need to overwrite
-# this variable later with a new one that is generated from the
-# "outcome" variable later, as this would ensure the purpose of the simulation study
-# that the "outcome" variable is the underlying probability of a particular
-# response, which is determined by the model and the parameters.
-
-# the purpose of generating the "outcome" variable is to be able to compare
-# it to the "response" variable and see how well the model is able to
-# predict the observed data. therefore they need to be related as such
-
-response <- sample(c(0, 1), size = n, replace = TRUE, prob = c(0.5, 0.5))
-table(response) # check, "0":481; "1": 519. looks ok
-
-# create the variable "participant_n_1" to indicate previous trial performer's identity
+# create a variable for the previous trial's performer identity
 participant_n_1 <- rbinom(n = n, size = 1, prob = 0.5)
-participant_n_1 <- ifelse(participant_n_1 == 1, 1, -1) # effect code: 1 is own
-table(participant_n_1) # looks ok
-
-# put into a data frame called sim_df
-# I want to do this before lagging that produces previous response, "response_n_1"
-# simply to match how I processed the real experiment data
-
-sim_df <- data.frame(block, trial, chamber, stimulus_n, stimulus_n_1,
-                     response, participant_n_1)
-
-# create the response_n_1 variable in sim_df
-sim_df["response_n_1"] <- lag(sim_df$response)
-#response_n_1 <- sim_df["response_n_1"]
-
-# effect code
-sim_df$response_n_1 <- ifelse(sim_df$response_n_1 == 1, 1, -1) # 1 is right
-# response_n_1 <- sim_df$response_n_1
-
-# omit the NA value from lagging
-sim_df <- na.omit(sim_df)
+participant_n_1 <- ifelse(participant_n_1 == 1, 1, -1) # effect coding: 1 = own
+table(participant_n_1) # check counts, looks ok
 ```
 
-## Compute the logits
+The ```table(participant_n_1)``` output shows the counts of each category in our simulated dataset:
+<img src="/assets/images/sim_step3.jpg" alt="alternate text" width="200" height="200">
 
-Now, we compute the logits to to generate a binomial distribution for the choice response by sampling from the outcome
+This shows that the task stimulus direction is balanced, rouhgly half is left and half is right. Similarly for the previous trial actor, about half performed by the participant oneself and half performed by the partner.
+
+## Step 4 The dependent variable
+
+The response variable represents the ground truth values of what responses the dyads aactually gave in the experiment, i.e., whether they chose left (0) or right (1). In this step we just generate the values randomly for now. The goal is simply to have a column in the dataframe that looks like trial-by-trial participant responses, so that later when lagging the responses or correctness make sense.
+
+Later, we will overwrite response variable with samples drawn from the model-based probabilities (outcome). This is essentially what the model predicts the participant would choose, given the predictors. Doing this ensures that the final simulated responses are consistent with the model’s assumptions.
 
 ```{r}
-# compute the logits
-xbs_all <- b0 + b1*stimulus_n + b3*(sim_df["response_n_1"]) + b4*participant_n_1
+# create an initial response variable (observed left/right responses)
+response <- sample(c(0, 1), size = n, replace = TRUE, prob = c(0.5, 0.5))
+table(response) # check counts
+```
 
-# generate a binomial distribution for the response by sampling from the outcome
-# probability distribution
-outcome <- inv.logit(xbs_all) # the simulated response to be modeled
+The ```table(response)``` output shows the counts of each category of response:
+<img src="/assets/images/sim_step4.jpg" alt="alternate text" width="200" height="250">
 
+This demonstrates that the responses are roughly balanced, as expected for a random initialization.
+
+```{r}
+# assemble everything into a dataframe
+sim_df <- data.frame(block, trial, room, stimulus_n, stimulus_n_1,
+                     response, participant_n_1)
+
+# create the lagged previous response variable, "response_n_1"
+sim_df$response_n_1 <- lag(sim_df$response)
+sim_df$response_n_1 <- ifelse(sim_df$response_n_1 == 1, 1, -1) # effect code: 1 = right
+
+# remove the first row with NA from lagging
+sim_df <- na.omit(sim_df)
+head(sim_df)
+```
+
+The ```head(sim_df)``` gives a preview of the first few rows of our simulated dataset:
+<img src="/assets/images/sim_step4-1.jpg" alt="alternate text" width="200" height="150">
+
+Each row represents a trial, with columns for block, trial number, chamber, stimulus direction, previous stimulus, participant identity, previous response, and the current response.
+
+## Step 5 Compute the logits
+
+Now we compute the logits, which quantify how the predictors (stimulus, previous response, previous participant) influence the probability of responding “right”.
+
+This step is basically the model’s “instruction” for how the responses should depend on the predictors.
+
+```{r}
+# compute the linear combination of predictors (logits)
+xbs_all <- b0 + b1*stimulus_n + b3*sim_df["response_n_1"] + b4*participant_n_1
+
+# transform logits into probabilities (between 0 and 1)
+outcome <- inv.logit(xbs_all) # predicted probability of responding "right"
+head(outcome)
+```
+<img src="/assets/images/sim_step5.jpg" alt="alternate text" width="200" height="150">
+
+## Step 6 Sample from the outcome
+
+GLMs predict probabilities, not actual 0/1 responses. So the `outcome` variable represents the probability that the participant responds "right" given the predictors. To simulate realistic binary responses, we sample from a Bernoulli distribution with these probabilities. This ensures that the response reflect the influence of the predictors, rather than being completely random.
+
+In other words, if we just generated 0s and 1s randomly (e.g., `sample(c(0,1), ...)`), there would be no relationship between the predictors and the responses, and the GLM would not recover the parameters we set.
+
+In short, the simulated response is a sample from a binomial distribution with probability = outcome, i.e., higher probabilities produce more 1's and lower probabilities produce more 0's.
+
+```{r}
 # outcome is a data frame, but the mean function expects a numeric vector.
-# convert the outcome data frame to a numeric vector, then take the mean.
+# therefore convert the outcome data frame to a numeric vector, then take the mean.
 outcome <- unlist(outcome)
 mean(outcome) # check if bias;
               # on average, the probability of the response being 1 is about 0.511
-```
 
-This is the new "response" variable, sampled from the outcome distribution. This will overwrite the old "response" variable. The relationship between the response and outcome variable is that the response is a sample from a binomial distribution with probability equal to the outcome variable i.e, if the outcome variable is high, the response variable should have more 1's and if the outcome variable is low, the response variable should have more 0's.
+# sampling from the outcome to generate a binomial distribution for the response probability distribution
+# this is like flipping a coin for each trial, but the coin is weighted by the model’s predicted probability
 
-If the response variable is not correctly related to the outcome variable, then the model will not be correctly estimating the relationship between the predictors and the response.
-
-```{r}
 response <- rbinom(n = n, size = 1, prob = outcome)
 
+# check
 summary(response)
 table(response)
 any(is.na(response))
 sum(is.na(response))
 table(response, useNA = "always")
-#na.omit(response)
+```
+The output from the series of checking
+<img src="/assets/images/sim_step5.jpg" alt="alternate text" width="200" height="150">
 
-# one issue would arise: the new response variable you generated has one more 
-# observation than the original response variable in the sim_df dataframe.
-# remove the last observation of the new response variable before overwriting
-# the existing response variable in sim_df with the new response_new variable
-# check again the dataframe to make sure the replacement was done correctly
+## Step 7 Update the dataset
 
+The new `response` variable we generated has one extra observation due to the lag. We remove the first observation to match the dataframe length before overwriting the old response. 
+
+Next, we create a binary version of the stimulus to match the coding of the response (0 = left, 1 = right), and compute a `correct` column to indicate whether each response matches the stimulus. This lets us check accuracy.
+
+```{r}
 response_new <- tail(response, -1)
 sim_df$response <- response_new # overwrite the old response
 
@@ -218,36 +277,37 @@ stimulus_n_binary <- ifelse(sim_df$stimulus_n == -1, 0, 1)
 # add a correct column to the dataframe
 sim_df["correct"] <- sim_df$response == stimulus_n_binary
 
-mean(sim_df$correct) # adjust b1 to check people's accuracy
+mean(sim_df$correct) # here I got 0.73, and we can adjust b1 to see what happens to accuracy
 #mean(sim_df$response)
 ```
 
-## Fit the GLM
+## Step 8 Fit the GLM
 
-- Run ```glm()``` to see how well it recovers the known parameters.
+Now we can type ```glm()```. This step is what we do when we analyze the data. Here we want to see how well it recovers the known parameters.
 
 ```{r}
-# mod_with <- glm(response ~ direction + previous_direction,
-#                 data = sim_df_new, family = "binomial")
-# summary(mod_with)
-# r2_tjur(mod_with)
-# 
+#response_n_1 <- sim_df$response_n_1
 
-# mod_without <- glm(response ~ previous_direction,
-#                    data = sim_df_new, family = "binomial")
-# summary(mod_without)
-# r2_tjur(mod_without)
-response_n_1 <- sim_df$response_n_1
-
-mod_with_prev <- glm(response ~ stimulus_n + response_n_1, 
+mod <- glm(response ~ stimulus_n + response_n_1, 
                 data = sim_df, family = "binomial")
-summary(mod_with_prev)
-r2_tjur(mod_with_prev)
-with(summary(mod_with_prev), 1 - deviance/null.deviance) # mcFadden's R^2
-
-mod_with_prev$coefficients <- list("Intercept"=10, "stimulus_n"=15, "response_n_1"= 0.02)
-r2_tjur(mod_with_prev)
-
-mod_with_prev
-
+summary(mod)
+#r2_tjur(mod)
 ```
+
+The output from the model fitting shows
+<img src="/assets/images/sim_step8.jpg" alt="alternate text" width="200" height="150">
+
+Recall the betas we set in the beginning:
+
+```{r}
+b0 <- 0
+b1 <- 1.3  # stimulus direction, or "stimulus_n"
+b2 <- 0.09 # previous direction of the stimulus
+b3 <- 0.8  # previous response, "response_n_1"
+b4 <- 0.8  # previous trial performer's identity, "participant_n_1"
+```
+The estimated coefficient for ```stimulus_n``` is ~0.997. Compared to the 1.3, it's slightly smaller but it captures the strong positive influence of the stimulus on responses.
+
+The estimated coefficient for ```response_n_1``` is ~0.042, which is a bit off compared to 0.8. This discrepancy sometimes occur because we only included two predictors in the model so the effects of the other predictors (participant_n_1 and stimulus_n-1) are not controlled for. This could shrink the apparent effect of ```response_n_1```.
+
+The intercept is near zero, consistent with b0 = 0.
