@@ -1,5 +1,5 @@
 ---
-title: "Data Simulation in R"
+title: "Data simulation in R"
 layout: post
 date: 2022-12-08
 tag:
