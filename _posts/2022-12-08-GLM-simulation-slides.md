@@ -16,5 +16,3 @@ description: Presentation slides for data simulation in R
         frameborder="0" 
         scrolling="yes">
 </iframe>
-
-        
