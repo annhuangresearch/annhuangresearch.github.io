@@ -197,7 +197,7 @@ table(response) # check counts
 ```
 
 The ```table(response)``` output shows the counts of each category of response:
-<img src="/assets/images/sim_step4.jpg" alt="alternate text" width="200" height="150">
+<img src="/assets/images/sim_step4.jpg" alt="alternate text" width="100" height="150">
 
 This demonstrates that the responses are roughly balanced, as expected for a random initialization.
 
