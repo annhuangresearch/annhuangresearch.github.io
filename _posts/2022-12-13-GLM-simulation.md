@@ -38,7 +38,7 @@ Many questions in psychology and neuroscience are about how people respond to se
 
 These types of questions deal with **detection of signals**, which also reveals the process of how we convert sensory inputs into a behavioral response like making a decision.
 
-To answer these questions, researchers often use psychophysics, or perceptual experiments to **model the relationship between physical stimuli and the subjective sensation**. Typically in these perceptual experiments, an observer is presented with a visual stimulus e.g., cloud of dots moving either predominately to the right or to the left (<a href="#fig2">Figure 2</a>). The observer is asked to discriminate the direction of the motion by making a speeded choice response between the two alternatives, thus the name of the experiment is referred to as the two-alternative forced choice (2AFC) task. For some, the task is easy yet for others, it is not so easy. Thus, each person's sensitivity to the same sensory stimulus varies.
+To answer these questions, researchers often use psycho-physics, or perceptual experiments to **model the relationship between physical stimuli and the subjective sensation**. Typically in these perceptual experiments, an observer is presented with a visual stimulus e.g., cloud of dots moving either predominately to the right or to the left (<a href="#fig2">Figure 2</a>). The observer is asked to **discriminate** the direction of the motion by making a speeded choice response between the two alternatives, thus the name of the experiment is referred to as the two-alternative forced choice (2AFC) task. For some, the task is easy yet for others, it is not so easy. Thus, each person's sensitivity to the same sensory stimulus varies.
 
 <figure id="fig2">
   <img src="/assets/images/2afc.jpg" alt="Task" width="500">
@@ -49,7 +49,7 @@ To answer these questions, researchers often use psychophysics, or perceptual ex
 
 ## Social perception
 
-Because I was interested in the social aspect of decision-making (see paper: [Huang et al., 2025](https://www.nature.com/articles/s41598-025-96182-5)), I turned this into a **dyadic perceptual decision-making task** (<a href="#fig3">Figure 3</a>) in which two people took turn to respond to the stimulus. In particular, I wanted to find out how the previous choice response influence or bias our decision-making. My objective was to determine whether perceptual decision-making is more of an individualistic (independent of the co-actor’s action) or collective (contingent on the co-actor’s action) process despite the co-actor’s actions being irrelevant to the present decision. This dual-participant setup allowed me to better understand how we make decisions knowing that we are being observed by other people, just like in real life.
+Since I am interested in the social aspect of perception (see paper: [Huang et al., 2025](https://www.nature.com/articles/s41598-025-96182-5)), I turned this classical paradigm into a **dyadic** one (<a href="#fig3">Figure 3</a>) in which two people took turn to respond to the stimulus. In particular, I wanted to find out how the previous choice response influence or bias our decision-making. My objective was to determine whether perceptual decision-making is more of an individualistic (independent of the co-actor’s action) or collective (contingent on the co-actor’s action) process despite the co-actor’s actions being irrelevant to the present decision. This dual-participant setup allowed me to better understand how we make decisions knowing that we are being observed by other people, just like in real life.
 
 <figure id="fig3">
   <img src="/assets/images/dyadic-task.jpg" alt="Task" width="500">
@@ -60,19 +60,19 @@ Because I was interested in the social aspect of decision-making (see paper: [Hu
 
 ## Generalized linear models
 
-In this case, typically we would want to fit a statistical model to the data to infer the relationship between what people chose and the variables that are believed to have influenced what people chose. **A statistical model is simply using math to represent the relationship between two variables.** Because people only made binary choices (left or right) in the experiment, this simplifies the solution to the problem a bit. Specifically, we can use the **generalized linear model (GLM)**([See tutorial](https://library.virginia.edu/data/articles/simulating-a-logistic-regression-model)) with a logit link function to explain the likelihood that people choose left or right based on specific sets of predictors, such as the stimulus direction, what the previous choice was or what the previous stimulus direction was.
+In this case, typically we would want to fit a statistical model to the data to infer the relationship between what people chose and the variables that are believed to have influenced what people chose. **A statistical model is simply using math to represent the relationship between two variables.** Because people only made binary choices (left or right) in the experiment, this simplifies the solution to the problem a bit. Specifically, we can use the [**generalized linear model (GLM)**](https://library.virginia.edu/data/articles/simulating-a-logistic-regression-model) with a logit link function to explain the likelihood that people choose left or right based on specific sets of predictors, such as the stimulus direction, what the previous choice was or what the previous stimulus direction was.
 
-To fit the statistical model to the observed data, we can use the R programming language since it provides an extensive library for a wide-ranging statistical analyses. Fitting a statistical model is easy and straightforward because it only requires typing one or maximum two lines of code.
+To fit the statistical model to the observed data, we can use the R programming language since it provides an extensive library for a wide-ranging statistical analyses. **Fitting a statistical model is straightforward because it only requires typing one or maximum two lines of code. However, interpreting the statistical output is not always easy.** In the current day and age of fast computing and internet information onverload, learning and applying knowledge can be very overwhelming.
 
 ## Why simulate?
 
-However, as a student starting out to learn how these statistical models work, sometimes we do not always understand exactly what the model is doing or how to really interpret the results. For example, what does a regression coefficient of 1.2 actually mean? How does effect coding versus dummy coding for the variables (−1 vs. +1 instead of 0 vs. 1) change the interpretation?
+As a student starting out to learn how these statistical models work, sometimes we do not always understand exactly what the model is doing or how to really interpret the results. For example, what does a regression coefficient of 1.2 actually mean? How does effect coding versus dummy coding for the variables (−1 vs. +1 instead of 0 vs. 1) change the interpretation?
 
-The analogy is like lego building. Imagine you’re given Lego car model. However, when you push it, it doesn’t roll or move. You suspect that it could be the pieces that are too tight or the axles misaligned. Instead of guessing, you can build a tiny test prototype, perhaps just one wheel and axle at a time. This way you see exactly how the pieces fit together that make the wheel roll smoothly. Data simulation works the similar way. By replicating a small version of the actual dataset and fitting the statistical model to it, you can better understand how the model works e.g., how each piece (variable) affects the outcome, and troubleshoot before fitting the model to your real dataset.
+The analogy is like lego building. Imagine you’re given lego car model. But when you attempt push it, it doesn’t roll or move. You suspect that it could be the pieces that are too tight or the axles misaligned. Instead of guessing, you can build a small prototype, perhaps just one wheel and axle at a time. Through this way, in the spirit of DIY, you see exactly how the pieces fit together that make the wheel roll smoothly. 
 
-**Specifically, by generating synthetic datasets where we set the "true" parameters, we can see how GLM estimation works in practice, check whether we can recover the parameters, and build intuition about model behavior.**
+Data simulation works in similar way. By replicating a small version of the actual dataset and fitting the statistical model to it, you can better understand how the model works e.g., how each piece (variable) affects the outcome, and troubleshoot before fitting the model to your real dataset. **Specifically, by generating synthetic datasets where we set the "true" parameters, we can see how GLM estimation works in practice, check whether we can recover the parameters, and build understanding about model performance instead of relying on intuition.**
 
-In this post, I will walk through an R script that simulates a perceptual task. We will first generate some synthetic data, then fit a GLM, and assess the output of the model. Specifically, we will compare the model's estimation to the values we set at the start.
+In this post, I will walk through an R script that simulates a dyadic perceptual task. We will first generate some synthetic data, then fit a GLM, and assess the output of the model. Specifically, we will compare the model's estimation to the values we set at the start.
 
 # R script
 
@@ -93,7 +93,7 @@ In this post, I will walk through an R script that simulates a perceptual task. 
 
   $$+ \beta_{2}\cdot\text{previous stimulus direction}\Big)$$
 
-- For logistic regression modeling estimation, the dependent variable is the participants’ response choices, which were bounded between 0 and 1, reflecting the probability of selecting rightward, rising from 0 (left) to 1 (right):
+- For logistic regression modeling estimation, the dependent variable is the participants’ choice response, which is bounded between 0 and 1, reflecting the probability of selecting rightward, rising from 0 (left) to 1 (right):
 
   $$
   \text{Response} =
@@ -146,7 +146,7 @@ b4 <- 0.8  # previous trial performer's identity, "participant_n_1"
 
 ## Step 3. Create the dataframe
 
-In this step, we can think about the core elements that make up the experiment. For example, a simple working experiment includes:
+In this step, we think about the core elements that make up the experiment. We also think about the variables that we are interested in to address our research question.
 
 - **Blocks** and **trials** that structure the experiment. In the actual experiment, there are 10 blocks with 100 trials each. Of course, you can simulate even more trials to see how it influences the model estimation
 - The **stimulus** direction that is the task itself which elicit responses from participants, $$stimulus_{n}$$
@@ -155,6 +155,9 @@ In this step, we can think about the core elements that make up the experiment. 
 - The participant's **choice response on the previous trial**. This is important since I want to investigate how might previous choice bias the decision, $$response_{n-1}$$
 - The **previous trial performer or actor**, because it is interesting to know whether who gave the response previously influence the decision, $$participant_{n-1}$$
 - The **chamber or room number** that each dyadic participant was sitting in
+
+In my case I have already designed and carried out the experiment, therefore I take it as my reference for simulating the dataset. 
+But if I had not yet conducted the experiment, thinking through these design elements in advance is useful. This is because we can explore whether the planned design has enough statistical power to detect the effects we care about. For example, we can ask: If the true effect of the previous response is $$𝛽=0.5$$ how many participants and trials are needed for the GLM to recover this reliably?
 
 The goal here is to simulate variables that represent each of these components for the experiment, so that the resulting dataframe mirrors the structure of the real experiment.
 
@@ -186,9 +189,9 @@ This shows that the task stimulus direction is balanced, rouhgly half is left an
 
 ## Step 4 The dependent variable
 
-The response variable represents the ground truth values of what responses the dyads aactually gave in the experiment, i.e., whether they chose left (0) or right (1). In this step we just generate the values randomly for now. The goal is simply to have a column in the dataframe that looks like trial-by-trial participant responses, so that later when lagging the responses or correctness make sense.
+The ```response``` variable represents the ground truth values of what choice responses the dyads aactually gave in the experiment, i.e., whether they chose left (0) or right (1). In this step we just generate the values randomly for now. The goal is simply to have a column in the dataframe that looks like trial-by-trial participant responses, so that later when lagging the responses or correctness make sense.
 
-Later, we will overwrite response variable with samples drawn from the model-based probabilities (outcome). This is essentially what the model predicts the participant would choose, given the predictors. Doing this ensures that the final simulated responses are consistent with the model’s assumptions.
+Later, we will overwrite response variable with samples drawn from the model-based probabilities (```outcome```). This is essentially what the model predicts the participant would choose, given the predictors. Doing this ensures that the final simulated responses are consistent with the model’s assumptions.
 
 ```{r}
 # create an initial response variable (observed left/right responses)
@@ -238,11 +241,11 @@ head(outcome)
 
 ## Step 6 Sample from the outcome
 
-GLMs predict probabilities, not actual 0/1 responses. So the `outcome` variable represents the probability that the participant responds "right" given the predictors. To simulate realistic binary responses, we sample from a Bernoulli distribution with these probabilities. This ensures that the response reflect the influence of the predictors, rather than being completely random.
+GLMs predict probabilities, not actual 0/1 responses. **So the `outcome` variable represents the probability that the participant responds "right" given the predictors.** To simulate realistic binary responses, we sample from the Bernoulli distribution with these probabilities. Here we use the Bernoulli distribution because we are dealing with binary data (e.g., 1 or 0, right or left, yes or no). Other data types such as counts or continuous responses require different distributions, e.g. Poisson or Normal. This sampling step presents the core idea of the data generating process, as it generates data that follows the logistic mathmatical relation but with realistic randomness.
 
 In other words, if we just generated 0s and 1s randomly (e.g., `sample(c(0,1), ...)`), there would be no relationship between the predictors and the responses, and the GLM would not recover the parameters we set.
 
-In short, the simulated response is a sample from a binomial distribution with probability = outcome, i.e., higher probabilities produce more 1's and lower probabilities produce more 0's.
+In short, the simulated response is a sample from a binomial distribution with probability = outcome, i.e., higher probabilities produce more 1's and lower probabilities produce more 0's, which is what the GLM with logit link function assumes.
 
 ```{r}
 # outcome is a data frame, but the mean function expects a numeric vector.
@@ -267,7 +270,7 @@ The output from the series of checking:
 
 <img src="/assets/images/sim_step6.jpg" alt="alternate text" width="400" height="250">
 
-## Step 7 Update the dataset
+## Step 7 Check and update the dataset
 
 The new `response` variable we generated has one extra observation due to the lag. We remove the first observation to match the dataframe length before overwriting the old response. 
 
@@ -291,7 +294,7 @@ mean(sim_df$correct) # here I got 0.73, and we can adjust b1 to see what happens
 
 ## Step 8 Fit the GLM
 
-Now we can type ```glm()```. This step is what we do when we analyze the data. Here we want to see how well it recovers the known parameters.
+Now we can finally type ```glm()```. This is the step that we normally do when we analyze the data. Here, we did all the steps to arrive at this point just to see how well it recovers the known parameters.
 
 ```{r}
 #response_n_1 <- sim_df$response_n_1
@@ -310,7 +313,7 @@ summary(mod_2)
 r2_tjur(mod_2)
 ```
 
-The output from the first model fitting shows:
+**The output from the first model fitting shows:**
 <img src="/assets/images/sim_step8.jpg" alt="alternate text" width="600" height="400">
 
 Recall the betas we set in the beginning:
@@ -326,7 +329,7 @@ b4 <- 0.8  # previous trial performer's identity, "participant_n_1"
 - The estimated coefficient for ```response_n_1``` is ~0.042, which is a bit off compared to 0.8. This discrepancy occurs because we only included two predictors in the model. This could shrink the apparent effect of ```response_n_1```.
 - The intercept is near zero, consistent with what we set in the beginning
 
-The output from the second model fitting shows:
+**The output from the second model fitting shows:**
 
 <img src="/assets/images/sim_step8-1.jpg" alt="alternate text" width="600" height="500">
 
