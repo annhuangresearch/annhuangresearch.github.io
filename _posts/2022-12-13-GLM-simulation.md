@@ -183,7 +183,7 @@ table(participant_n_1) # check counts, looks ok
 
 The ```table(participant_n_1)``` output shows the counts of each category in our simulated dataset:
 
-<img src="/assets/images/sim_step3.jpg" alt="alternate text" width="110" height="200">
+![participant table](/assets/images/sim_step3.png)
 
 This shows that the task stimulus direction is balanced, rouhgly half is left and half is right. Similarly for the previous trial actor, about half performed by the participant oneself and half performed by the partner.
 
@@ -200,7 +200,8 @@ table(response) # check counts
 ```
 
 The ```table(response)``` output shows the counts of each category of response:
-<img src="/assets/images/sim_step4.jpg" alt="alternate text" width="100" height="150">
+
+![response table](/assets/images/sim_step4.png)
 
 This demonstrates that the responses are roughly balanced, as expected for a random initialization.
 
@@ -219,7 +220,7 @@ head(sim_df)
 ```
 
 The ```head(sim_df)``` gives a preview of the first few rows of our simulated dataset:
-<img src="/assets/images/sim_step4-1.jpg" alt="alternate text" width="530" height="150">
+![simulation dataset](/assets/images/sim_step4_1.png)
 
 Each row represents a trial, with columns for block, trial number, chamber, stimulus direction, previous stimulus, participant identity, previous response, and the current response.
 
@@ -237,7 +238,7 @@ xbs_all <- b0 + b1*stimulus_n + b3*sim_df["response_n_1"] + b4*participant_n_1
 outcome <- inv.logit(xbs_all) # predicted probability of responding "right"
 head(outcome)
 ```
-<img src="/assets/images/sim_step5.jpg" alt="alternate text" width="100" height="300">
+![outcome](/assets/images/sim_step5.png)
 
 ## Step 6 Sample from the outcome
 
@@ -260,15 +261,16 @@ mean(outcome) # check if bias;
 response <- rbinom(n = n, size = 1, prob = outcome)
 
 # check
-summary(response)
+head(response, 20)
 table(response)
-any(is.na(response))
-sum(is.na(response))
-table(response, useNA = "always")
 ```
-The output from the series of checking:
 
-<img src="/assets/images/sim_step6.jpg" alt="alternate text" width="400" height="250">
+Check the first 20 rows in ```response```:
+
+![response rows](/assets/images/sim_step6.png)
+
+Summary table of ```response```:
+![response rows](/assets/images/sim_step6_1.png)
 
 ## Step 7 Check and update the dataset
 
@@ -277,6 +279,13 @@ The new `response` variable we generated has one extra observation due to the la
 Next, we create a binary version of the stimulus to match the coding of the response (0 = left, 1 = right), and compute a `correct` column to indicate whether each response matches the stimulus. This lets us check accuracy.
 
 ```{r}
+
+# one issue would arise: the new response variable generated has one more 
+# observation than the original response variable in the sim_df dataframe.
+# remove the last observation of the new response variable before overwriting
+# the existing response variable in sim_df with the new response_new variable
+# check again the dataframe to make sure the replacement was done correctly
+
 response_new <- tail(response, -1)
 sim_df$response <- response_new # overwrite the old response
 
@@ -288,9 +297,15 @@ stimulus_n_binary <- ifelse(sim_df$stimulus_n == -1, 0, 1)
 # add a correct column to the dataframe
 sim_df["correct"] <- sim_df$response == stimulus_n_binary
 
-mean(sim_df$correct) # here I got 0.73, and we can adjust b1 to see what happens to accuracy
-#mean(sim_df$response)
+mean(sim_df$correct)
 ```
+The mean accuracy is around 73%, which is what I would expect if people follow task instructions and respond to the task stimulus accordingly. Play around with the b1 parameter to see what happens to people's accuracy:
+
+![accuracy performance](/assets/images/sim_step7.png)
+
+This is the updated simulated dataset:
+
+![updated sim df](/assets/images/sim_step7_1.png)
 
 ## Step 8 Fit the GLM
 
@@ -314,7 +329,7 @@ r2_tjur(mod_2)
 ```
 
 **The output from the first model fitting shows:**
-<img src="/assets/images/sim_step8.jpg" alt="alternate text" width="600" height="400">
+![updated sim df](/assets/images/sim_step8.png)
 
 Recall the betas we set in the beginning:
 
@@ -331,7 +346,7 @@ b4 <- 0.8  # previous trial performer's identity, "participant_n_1"
 
 **The output from the second model fitting shows:**
 
-<img src="/assets/images/sim_step8-1.jpg" alt="alternate text" width="600" height="500">
+![updated sim df](/assets/images/sim_step8_1.png)
 
 - The estimated coefficient for ```stimulus_n``` is now ~1.10, slightly closer to the true value of 1.3 compared to the previous model.
 - The estimated coefficient for ```response_n_1``` remains small ~0.041, still below its true effect of 0.8.
