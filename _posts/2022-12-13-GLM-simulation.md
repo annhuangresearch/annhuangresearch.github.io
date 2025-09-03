@@ -14,7 +14,8 @@ description: Simulating data to understand the data generation process
 # Outline
 - [Summary](#summary)
 - [Background](#background)
-- [R Script](#r-script)
+- [R script](#r-script)
+- [Additional resources](#additional-resources)
 
 # Summary
 
@@ -353,7 +354,7 @@ b4 <- 0.8  # previous trial performer's identity, "participant_n_1"
 - The estimated coefficient for ```participant_n_1``` is ~0.70, closer to the true value of 0.8. Including this predictor allows the model to account for variability between participants, which was previously absorbed by other coefficients.
 - Tjur’s R² increased from ~0.21 to ~0.28, indicating the model now explains more of the variability in responses
 
-## Additional Resources
+# Additional Resources
 [GLM Simulation](https://uk.sagepub.com/sites/default/files/upm-assets/57233_book_item_57233.pdf)
 [Interpret Logistic Regression Coefficients](https://quantifyinghealth.com/interpret-logistic-regression-coefficients/)
 [Basic Data Simulation & Power Analysis](https://cu-psych-computing.github.io/cu-psych-comp-tutorial/tutorials/r-extra/data-sim-power/basic-simulation-power/)
