@@ -1,5 +1,5 @@
 ---
-title: "What can dyadic perceptual task tell us about real world cognition?"
+title: "What can a dyadic perceptual task tell us about cognition in real life?"
 layout: post
 date: 2025-01-25
 headerImage: false
