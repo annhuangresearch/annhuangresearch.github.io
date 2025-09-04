@@ -27,7 +27,7 @@ This experimental methodology we designed in the research domain of choice histo
 
 Our behavior emerges from our real-time interactions with the surrounding environment. **It's kind of radical to think about our brain and cognition in this way, because it has not always been that way.** Rather it's this [idea](https://plato.stanford.edu/archIves/win2013/entries/embodied-cognition/) that our brain generates behaviors, or our brain is separated from our body, that has traditionally dominated the thinking.
 
-## People do not ignore other's actions
+## People do not ignore each other's actions
 
 I carried out a joint perceptual task and collected behavioral data from people grouped in dyads. **Our results indicated that people do not ignore other’s choices when they make decisions.**
 
