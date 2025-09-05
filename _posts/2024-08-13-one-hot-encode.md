@@ -1,7 +1,7 @@
 ---
-title: "The practical use of conditional, one-hot encoding"
+title: "The use of conditional, one-hot encoding"
 layout: post
-date: 2024-08-13
+date: 2024-08-30
 tag:
 - coding
 - tutorial

@@ -1,5 +1,5 @@
 ---
-title: "Exponentially weighted moving averages"
+title: "Calculating exponentially weighted moving averages for time series data"
 layout: post
 date: 2024-08-13
 tag:
@@ -11,9 +11,9 @@ author: annhuang
 description: 
 ---
 
-## Context: Taking turns to make decision with another person
+## Context: Making decisions with another person
 
-Suppose we have a perceptual decision-making task:
+Suppose there are two people performing a perceptual decision-making experimental task:
 
 ![DDM diagram](/assets/images/ddm-diagram.png)
 
@@ -21,16 +21,16 @@ This diagram presents an example sequence of one experiment block performed by o
 
 I want to determine whether perceptual decision-making is more of an individualistic (independent of the co-actor’s action) or collective (contingent on the co-actor’s action) process despite the co-actor’s actions being irrelevant to the present decision. To do this, I fit a GLM to the observed choice data.
 
-## Step 1 Create variables that code for choice history data 
+## Step 1 Create variables that code for serial choice history
 
 First I need to create variables that code for choice history data for own and partner.
 
-Specifically I can write a function that find what the last response was given by the same identity ("the first last" response). In other words, the person acting now, what was his/her last response? and last last? all the way until the 5th last. Same for the response given by the person who is not acting now (partner).
+Specifically I can write a function that finds what the last response was given by the same person who is acting (own). In other words, the person acting now, what was their last response? What about last last? And what about last last last? ...all the way until the fifth last. Same for the response given by the person who is not acting now i.e., the person observing (partner).
 
 The is the R code:
 
 ```{r}
-# Initialize columns
+# initialize columns
 d$own_last_responses <- NA
 d$own_last_responses_2 <- NA
 d$own_last_responses_3 <- NA
@@ -98,11 +98,11 @@ for (block_number in 1:num_blocks) {
 
 ## Step 2 Apply exponentially weighed moving averages
 
-We don’t want to treat all past responses equally becuase more recent choices might be likely more influential than choices further in the past.
+We do not want to treat all past responses equally. In other words, more recent choices might be more influential than choices further in the past i.e., realistically there could be a decay of memory with the decision in increasingly distant past.
 
-This is where exponentially weighted moving averages (EWMA) come in. EWMA is a method to smooth sequential data, giving higher weight to recent observations and exponentially decaying weight to older ones. 
+This is where exponentially weighted moving averages (EWMA) come in. EWMA is a method to smooth sequential data, giving higher weight to recent observations and exponentially decaying weights to older ones. 
 
-We can create a variable ```weighted_avg_own_sum```, which is essentially a weighted combination of one's own choice history responses at different lags (1 to 5) to capture own's trial history in a way that accounts for a memory decay effect. The more recent choices have higher weight, and older choices have lower weight. 
+To do this we can create a variable ```weighted_avg_own_sum```, which is a weighted combination of one's own choice history responses at different lags (1 to 5) to capture own's trial history in a way that accounts for a memory decay effect. The more recent choices have higher weight, and older choices have lower weight. 
 
 We can do this in R:
 
