@@ -4,9 +4,9 @@ layout: page
 ---
 ![Profile Image]({% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %})
 
-Ann Huang is a scientific researcher trained in the PhD Research Training Group [Computational Cognition](https://cognition.uni-osnabrueck.de/research/) in the [Institute of Cognitive Science](https://www.uni-osnabrueck.de/fb8/ikw") at the University Osnabrück. Previously she was a research assistant in the [Institute of Informatics](https://www.en.um.informatik.uni-muenchen.de/index.html) at LMU Munich. Ann's work intersects computational cognitive science and human-computer interaction, with a focus on understanding social perception and decision-making.
+Ann Huang is a researcher trained in the PhD Research Training Group [Computational Cognition](https://cognition.uni-osnabrueck.de/research/) in the [Institute of Cognitive Science](https://www.uni-osnabrueck.de/fb8/en/ikw) at the University Osnabrück. Previously she was a research assistant in the [Institute of Informatics](https://www.en.um.informatik.uni-muenchen.de/index.html) at LMU Munich. Ann's work intersects computational cognitive science and human-computer interaction, with a focus on understanding social perception and decision-making.
 
-Using methods from experimental psychology, statistical modeling, augmented and virtual reality, she explores how principles of embodied social cognition can inform the design of machines or technology interfaces that make human-computer interaction more natural and intuitive.
+Using methods from experimental psychology, statistical modeling, augmented and virtual reality, Ann explores how principles of embodied social cognition can inform the design of machines or technology interfaces that make human-computer interaction more natural and intuitive.
 
 Ann loves to learn about emerging technologies for social good. Beyond academia, Ann is invovled in consulting for startups. Most recently she has been working on a project that seeks to deliver health technologies and educational materials that assist the elderly in healthy aging.
 
