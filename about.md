@@ -8,7 +8,7 @@ Ann Huang is a researcher trained in the PhD Research Training Group [Computatio
 
 Using methods from experimental psychology, statistical modeling, augmented and virtual reality, Ann explores how principles of embodied social cognition can inform the design of machines or technology interfaces that make human-computer interaction more natural and intuitive.
 
-Ann loves to learn about emerging technologies for social good. Beyond academia, Ann is invovled in consulting for startups. Most recently she has been working on a project that seeks to deliver health technologies and educational materials that assist the elderly in healthy aging.
+Ann loves to learn about emerging technologies for social good. Recently, Ann's research examines digitization in the aging population. Beyond academia, Ann is invovlved in consulting for startups. She has been working on a projects that seeks to deliver health technologies and educational materials that assist the elderly in healthy aging.
 
 <h2>Skills</h2>
 
