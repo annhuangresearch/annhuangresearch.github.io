@@ -4,11 +4,20 @@ layout: page
 ---
 ![Profile Image]({% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %})
 
-Ann Huang is a researcher trained in the PhD Research Training Group [Computational Cognition](https://cognition.uni-osnabrueck.de/research/) in the [Institute of Cognitive Science](https://www.uni-osnabrueck.de/fb8/en/ikw) at the University Osnabrück. Previously she was a research assistant in the [Institute of Informatics](https://www.en.um.informatik.uni-muenchen.de/index.html) at LMU Munich. Ann's work intersects computational cognitive science and human-computer interaction, with a focus on understanding social perception and decision-making.
+Ann Huang is a researcher trained in the PhD Research Training Group [Computational Cognition](https://cognition.uni-osnabrueck.de/research/) in the [Institute of Cognitive Science](https://www.uni-osnabrueck.de/fb8/en/ikw) at the University Osnabrück. Previously she was a research assistant in the [Institute of Informatics](https://www.en.um.informatik.uni-muenchen.de/index.html) at LMU Munich. Ann's work intersects computational cognitive science and human-computer interaction, with a focus on understanding dyadic perception and decision-making.
 
 Using methods from experimental psychology, statistical modeling, augmented and virtual reality, Ann explores how principles of embodied social cognition can inform the design of machines or technology interfaces that make human-computer interaction more natural and intuitive.
 
-Ann loves to learn about emerging technologies for social good. Recently, Ann's research examines digitization in the aging population. Beyond academia, Ann is invovlved in consulting for startups. She has been working on a projects that seeks to deliver health technologies and educational materials that assist the elderly in healthy aging.
+Ann loves to learn about emerging technologies for social good. Recently, Ann is invovled in research that investigate the effects of digital transformation specifically in the aging population.
+
+<h2>Interests</h2>
+
+<ul class="skill-list">
+	<li>Human-technology interaction</li>
+	<li>Social perception</li>
+	<li>Embodied cognition</li>
+</ul>
+
 
 <h2>Skills</h2>
 
@@ -18,7 +27,7 @@ Ann loves to learn about emerging technologies for social good. Recently, Ann's 
 	<li>Bayesian statistics</li>
 	<li>R</li>
 	<li>Python</li>
-	<li>SQL</li>
+	<li>AR/VR</li>
 </ul>
 
 <h2>Publications</h2>
